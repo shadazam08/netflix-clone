@@ -1,8 +1,10 @@
 import { NextRequest } from "next/server";
+
 import { AUTH_MESSAGES } from "@/server/auth";
 import { ApiResponse, handleApiError } from "@/server/lib";
 import { AuthService } from "@/server/services";
 import { loginSchema } from "@/server/validations";
+import { toAuthResponseDto } from "@/server/dto";
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,12 +20,7 @@ export async function POST(request: NextRequest) {
     );
 
     return ApiResponse.success(
-      {
-        id: user.id,
-        email: user.email,
-        role: user.role.name,
-        profiles: user.profiles,
-      },
+      toAuthResponseDto(user),
       AUTH_MESSAGES.LOGIN_SUCCESS
     );
   } catch (error) {
