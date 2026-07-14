@@ -1,7 +1,18 @@
+import { Prisma } from "@/generated/prisma/client";
+
 import { BaseRepository } from "./base.repository";
 
+export type UserWithRelations = Prisma.UserGetPayload<{
+  include: {
+    role: true;
+    profiles: true;
+  };
+}>;
+
 export class UserRepository extends BaseRepository {
-  async findByEmail(email: string) {
+  async findByEmail(
+    email: string
+  ): Promise<UserWithRelations | null> {
     return this.db.user.findUnique({
       where: { email },
       include: {
@@ -11,7 +22,9 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  async findById(id: string) {
+  async findById(
+    id: string
+  ): Promise<UserWithRelations | null> {
     return this.db.user.findUnique({
       where: { id },
       include: {
@@ -27,7 +40,7 @@ export class UserRepository extends BaseRepository {
     email: string;
     password: string;
     roleId: string;
-  }) {
+  }): Promise<UserWithRelations> {
     return this.db.user.create({
       data: {
         firstName: data.firstName,
@@ -53,7 +66,7 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  async exists(email: string) {
+  async exists(email: string): Promise<boolean> {
     const count = await this.db.user.count({
       where: { email },
     });

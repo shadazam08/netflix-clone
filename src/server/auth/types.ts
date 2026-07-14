@@ -1,11 +1,6 @@
-import { Prisma } from "@/generated/prisma/client";
+import type { UserWithRelations } from "@/server/repositories";
 
-export type AuthUser = Prisma.UserGetPayload<{
-  include: {
-    role: true;
-    profiles: true;
-  };
-}>;
+export type AuthUser = UserWithRelations;
 
 export interface LoginResult {
   user: AuthUser;
