@@ -271,12 +271,36 @@ model Content {
   ratings          Rating[]
   reviews          Review[]
 
+  overview       String?   @db.Text
+  tagline        String?
+
+  releaseYear    Int?
+
+  countryId      String?
+  country        Country?  @relation(fields: [countryId], references: [id])
+
+  studioId       String?
+  studio         Studio?   @relation(fields: [studioId], references: [id])
+
+  publishedAt    DateTime?
+  publishedBy    String?
+
+  deactivatedAt  DateTime?
+  deactivatedBy  String?
+
+  tags           ContentTag[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([slug])
   @@index([status])
   @@index([type])
+  @@index([countryId])
+  @@index([studioId])
+  @@index([releaseYear])
+  @@index([isFeatured])
+  @@index([isTrending])
 }
 
 model Movie {
@@ -615,4 +639,49 @@ model AuditLog {
 
   @@index([userId])
   @@index([entity])
+}
+model Country {
+  id          String   @id @default(cuid())
+
+  name        String
+  code        String   @unique
+
+  contents    Content[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Studio {
+  id          String   @id @default(cuid())
+
+  name        String   @unique
+  slug        String   @unique
+
+  contents    Content[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Tag {
+  id          String   @id @default(cuid())
+
+  name        String   @unique
+  slug        String   @unique
+
+  contents    ContentTag[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ContentTag {
+  contentId   String
+  tagId       String
+
+  content      Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  tag          Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([contentId, tagId])
 }
