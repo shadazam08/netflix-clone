@@ -1,24 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import NextAuth from "next-auth";
 
-const PUBLIC_ROUTES = [
-  "/",
-  "/login",
-  "/register",
-  "/api/auth/login",
-  "/api/auth/register",
-];
+import { authConfig } from "@/server/auth";
 
-export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  if (PUBLIC_ROUTES.includes(pathname)) {
-    return NextResponse.next();
-  }
-
-  // Auth.js session validation will be added in Phase 5
-
-  return NextResponse.next();
-}
+export default NextAuth(authConfig).auth;
 
 export const config = {
   matcher: [
