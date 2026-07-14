@@ -13,12 +13,15 @@ export async function POST(request: NextRequest) {
     const users = new UserRepository();
     const roles = new RoleRepository();
 
-    const existingUser = await users.findByEmail(data.email);
-
-    if (existingUser) {
+    if (await users.exists(data.email)) {
       return NextResponse.json(
-        { message: "Email already exists." },
-        { status: 409 }
+        {
+          success: false,
+          message: "Email already registered.",
+        },
+        {
+          status: 409,
+        }
       );
     }
 
@@ -26,35 +29,49 @@ export async function POST(request: NextRequest) {
 
     if (!role) {
       return NextResponse.json(
-        { message: "Default role not found." },
-        { status: 500 }
+        {
+          success: false,
+          message: "Default role not found.",
+        },
+        {
+          status: 500,
+        }
       );
     }
 
-    const hashedPassword = await PasswordService.hash(data.password);
+    const password = await PasswordService.hash(data.password);
 
     const user = await users.create({
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
-      password: hashedPassword,
+      password,
       roleId: role.id,
     });
 
     return NextResponse.json(
       {
+        success: true,
         message: "Registration successful.",
-        userId: user.id,
+        data: {
+          id: user.id,
+          email: user.email,
+        },
       },
-      { status: 201 }
+      {
+        status: 201,
+      }
     );
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
-        message: "Invalid request.",
+        success: false,
+        message: "Registration failed.",
       },
       {
-        status: 400,
+        status: 500,
       }
     );
   }
