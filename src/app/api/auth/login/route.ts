@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { AUTH_MESSAGES } from "@/server/auth";
 import { loginSchema } from "@/server/validations";
 import { AuthService } from "@/server/services";
 
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          message: "Invalid email or password.",
+          message: AUTH_MESSAGES.INVALID_CREDENTIALS,
         },
         {
           status: 401,
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          message: "Account is not active.",
+          message: AUTH_MESSAGES.ACCOUNT_NOT_ACTIVE,
         },
         {
           status: 403,
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: "Login successful.",
+        message: AUTH_MESSAGES.LOGIN_SUCCESS,
         data: {
           id: user.id,
           email: user.email,
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: "Login failed.",
+        message: AUTH_MESSAGES.LOGIN_FAILD,
       },
       {
         status: 500,

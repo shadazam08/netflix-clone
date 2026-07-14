@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { AUTH_MESSAGES } from "@/server/auth";
 import { registerSchema } from "@/server/validations";
 import { UserRepository, RoleRepository } from "@/server/repositories";
 import { PasswordService } from "@/server/services";
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          message: "Email already registered.",
+          message: AUTH_MESSAGES.EMAIL_ALREADY_EXISTS,
         },
         {
           status: 409,
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          message: "Default role not found.",
+          message: AUTH_MESSAGES.ROLE_NOT_FOUND,
         },
         {
           status: 500,
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: "Registration successful.",
+        message: AUTH_MESSAGES.REGISTRATION_SUCCESS,
         data: {
           id: user.id,
           email: user.email,
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: "Registration failed.",
+        message: AUTH_MESSAGES.REGISTION_FAIL,
       },
       {
         status: 500,
