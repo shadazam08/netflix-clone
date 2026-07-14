@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         {
+          success: false,
           message: "Invalid email or password.",
         },
         {
@@ -27,26 +28,43 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (user.status !== "ACTIVE") {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Account is not active.",
+        },
+        {
+          status: 403,
+        }
+      );
+    }
+
     return NextResponse.json(
       {
+        success: true,
         message: "Login successful.",
-        user: {
+        data: {
           id: user.id,
           email: user.email,
           role: user.role.name,
+          profiles: user.profiles,
         },
       },
       {
         status: 200,
       }
     );
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
-        message: "Invalid request.",
+        success: false,
+        message: "Login failed.",
       },
       {
-        status: 400,
+        status: 500,
       }
     );
   }
