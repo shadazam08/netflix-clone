@@ -1,5 +1,8 @@
 import type { AuthUser } from "@/server/auth";
-import type { AuthResponseDto } from "@/server/dto";
+import type {
+  AuthResponseDto,
+  RegisterResponseDto,
+} from "@/server/dto";
 
 export class AuthMapper {
   static toResponse(user: AuthUser): AuthResponseDto {
@@ -17,6 +20,15 @@ export class AuthMapper {
         isPrimary: profile.isPrimary,
         type: profile.type,
       })),
+    };
+  }
+
+  static toRegisterResponse(
+    user: AuthUser
+  ): RegisterResponseDto {
+    return {
+      id: user.id,
+      email: user.email,
     };
   }
 }
