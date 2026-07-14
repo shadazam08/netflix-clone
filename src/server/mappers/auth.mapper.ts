@@ -12,7 +12,6 @@ export class AuthMapper {
       firstName: user.firstName,
       lastName: user.lastName,
       role: user.role.name,
-
       profiles: user.profiles.map((profile) => ({
         id: profile.id,
         name: profile.name,
@@ -22,10 +21,10 @@ export class AuthMapper {
       })),
     };
   }
+}
 
-  static toRegisterResponse(
-    user: AuthUser
-  ): RegisterResponseDto {
+export class RegisterMapper {
+  static toResponse(user: AuthUser): RegisterResponseDto {
     return {
       id: user.id,
       email: user.email,
