@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { AUTH_MESSAGES } from "@/server/auth";
+import { NextRequest } from "next/server";
 import { loginSchema } from "@/server/validations";
 import { AuthService } from "@/server/services";
+import { AUTH_MESSAGES } from "@/server/auth";
+import { ApiResponse } from "@/server/lib/api-response";
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,55 +18,34 @@ export async function POST(request: NextRequest) {
     );
 
     if (!user) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: AUTH_MESSAGES.INVALID_CREDENTIALS,
-        },
-        {
-          status: 401,
-        }
+      return ApiResponse.error(
+        AUTH_MESSAGES.INVALID_CREDENTIALS,
+        401
       );
     }
 
     if (user.status !== "ACTIVE") {
-      return NextResponse.json(
-        {
-          success: false,
-          message: AUTH_MESSAGES.ACCOUNT_NOT_ACTIVE,
-        },
-        {
-          status: 403,
-        }
+      return ApiResponse.error(
+        AUTH_MESSAGES.ACCOUNT_NOT_ACTIVE,
+        403
       );
     }
 
-    return NextResponse.json(
+    return ApiResponse.success(
       {
-        success: true,
-        message: AUTH_MESSAGES.LOGIN_SUCCESS,
-        data: {
-          id: user.id,
-          email: user.email,
-          role: user.role.name,
-          profiles: user.profiles,
-        },
+        id: user.id,
+        email: user.email,
+        role: user.role.name,
+        profiles: user.profiles,
       },
-      {
-        status: 200,
-      }
+      AUTH_MESSAGES.LOGIN_SUCCESS
     );
   } catch (error) {
     console.error(error);
 
-    return NextResponse.json(
-      {
-        success: false,
-        message: AUTH_MESSAGES.LOGIN_FAILD,
-      },
-      {
-        status: 500,
-      }
+    return ApiResponse.error(
+      AUTH_MESSAGES.LOGIN_FAILD,
+      500
     );
   }
 }

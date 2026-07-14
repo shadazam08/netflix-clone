@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { AUTH_MESSAGES } from "@/server/auth";
+import { NextRequest } from "next/server";
 import { registerSchema } from "@/server/validations";
 import { UserRepository, RoleRepository } from "@/server/repositories";
 import { PasswordService } from "@/server/services";
+import { AUTH_MESSAGES } from "@/server/auth";
+import { ApiResponse } from "@/server/lib/api-response";
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,28 +15,18 @@ export async function POST(request: NextRequest) {
     const roles = new RoleRepository();
 
     if (await users.exists(data.email)) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: AUTH_MESSAGES.EMAIL_ALREADY_EXISTS,
-        },
-        {
-          status: 409,
-        }
+      return ApiResponse.error(
+        AUTH_MESSAGES.EMAIL_ALREADY_EXISTS,
+        409
       );
     }
 
     const role = await roles.getDefaultUserRole();
 
     if (!role) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: AUTH_MESSAGES.ROLE_NOT_FOUND,
-        },
-        {
-          status: 500,
-        }
+      return ApiResponse.error(
+        AUTH_MESSAGES.ROLE_NOT_FOUND,
+        500
       );
     }
 
@@ -49,30 +40,20 @@ export async function POST(request: NextRequest) {
       roleId: role.id,
     });
 
-    return NextResponse.json(
+    return ApiResponse.success(
       {
-        success: true,
-        message: AUTH_MESSAGES.REGISTRATION_SUCCESS,
-        data: {
-          id: user.id,
-          email: user.email,
-        },
+        id: user.id,
+        email: user.email,
       },
-      {
-        status: 201,
-      }
+      AUTH_MESSAGES.REGISTRATION_SUCCESS,
+      201
     );
   } catch (error) {
     console.error(error);
 
-    return NextResponse.json(
-      {
-        success: false,
-        message: AUTH_MESSAGES.REGISTION_FAIL,
-      },
-      {
-        status: 500,
-      }
+    return ApiResponse.error(
+      AUTH_MESSAGES.REGISTION_FAIL,
+      500
     );
   }
 }
