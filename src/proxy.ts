@@ -8,15 +8,14 @@ const PUBLIC_ROUTES = [
   "/api/auth/register",
 ];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (PUBLIC_ROUTES.includes(pathname)) {
     return NextResponse.next();
   }
 
-  // TODO:
-  // Validate Auth.js session / JWT
+  // Auth.js session validation will be added in Phase 5
 
   return NextResponse.next();
 }
