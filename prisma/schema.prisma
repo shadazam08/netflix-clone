@@ -91,6 +91,22 @@ enum RatingValue {
   FIVE
 }
 
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  PUBLISH
+  DEACTIVATE
+  LOGIN
+  LOGOUT
+}
+
 model Role {
   id          String  @id @default(cuid())
   name        String  @unique
@@ -112,9 +128,10 @@ model User {
   roleId String
   role   Role   @relation(fields: [roleId], references: [id])
 
-  profiles Profile[]
-  accounts Account[]
-  sessions Session[]
+  profiles  Profile[]
+  accounts  Account[]
+  sessions  Session[]
+  auditLogs AuditLog[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -518,4 +535,48 @@ model Review {
   updatedAt DateTime @updatedAt
 
   @@index([contentId])
+}
+
+model Notification {
+  id String @id @default(cuid())
+
+  title   String
+  message String @db.Text
+
+  type NotificationType
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SystemSetting {
+  id String @id @default(cuid())
+
+  key   String @unique
+  value String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  action AuditAction
+
+  entity   String
+  entityId String
+
+  ipAddress String?
+  userAgent String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([entity])
 }
