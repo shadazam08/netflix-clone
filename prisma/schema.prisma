@@ -4,8 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum UserStatus {
@@ -19,6 +19,7 @@ enum ProfileType {
   ADULT
   KIDS
 }
+
 enum ContentType {
   MOVIE
   TV_SHOW
@@ -42,6 +43,7 @@ enum Certification {
   UA16
   A
 }
+
 enum LanguageCode {
   EN
   HI
@@ -73,6 +75,7 @@ enum AudioType {
   ORIGINAL
   DUBBED
 }
+
 enum PersonRole {
   ACTOR
   DIRECTOR
@@ -80,54 +83,68 @@ enum PersonRole {
   WRITER
 }
 
+enum RatingValue {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}
+
 model Role {
-  id          String   @id @default(cuid())
-  name        String   @unique
+  id          String  @id @default(cuid())
+  name        String  @unique
   description String?
 
-  users       User[]
+  users User[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model User {
-  id              String      @id @default(cuid())
-  email           String      @unique
+  id              String     @id @default(cuid())
+  email           String     @unique
   password        String
   emailVerifiedAt DateTime?
-  status          UserStatus  @default(PENDING)
+  status          UserStatus @default(PENDING)
 
-  roleId          String
-  role            Role        @relation(fields: [roleId], references: [id])
+  roleId String
+  role   Role   @relation(fields: [roleId], references: [id])
 
-  profiles        Profile[]
+  profiles Profile[]
   accounts Account[]
   sessions Session[]
 
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Profile {
-  id          String      @id @default(cuid())
-  name        String
-  avatar      String?
-  pin         String?
-  type        ProfileType @default(ADULT)
-  language    String      @default("en")
+  id       String      @id @default(cuid())
+  name     String
+  avatar   String?
+  pin      String?
+  type     ProfileType @default(ADULT)
+  language String      @default("en")
 
-  userId      String
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  myList           MyList[]
+  watchHistory     WatchHistory[]
+  continueWatching ContinueWatching[]
+  ratings          Rating[]
+  reviews          Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String @id @default(cuid())
   userId            String
   type              String
   provider          String
@@ -162,41 +179,47 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
 model Content {
-  id              String              @id @default(cuid())
+  id String @id @default(cuid())
 
-  title           String
-  slug            String              @unique
+  title String
+  slug  String @unique
 
-  description     String              @db.Text
+  description String @db.Text
 
-  type            ContentType
-  status          ContentStatus       @default(DRAFT)
-  visibility      ContentVisibility   @default(PUBLIC)
+  type       ContentType
+  status     ContentStatus     @default(DRAFT)
+  visibility ContentVisibility @default(PUBLIC)
 
-  certification   Certification
+  certification Certification
 
-  releaseDate     DateTime?
+  releaseDate DateTime?
 
-  duration        Int?
+  duration Int?
 
-  isFeatured      Boolean             @default(false)
-  isTrending      Boolean             @default(false)
+  isFeatured Boolean @default(false)
+  isTrending Boolean @default(false)
 
-  categoryLinks   ContentCategory[]
-  genreLinks      ContentGenre[]
+  categoryLinks ContentCategory[]
+  genreLinks    ContentGenre[]
 
-  movie           Movie?
-  tvShow          TvShow?
+  movie  Movie?
+  tvShow TvShow?
 
-  languages   ContentLanguage[]
-  media       Media[]
-  subtitles   Subtitle[]
-  audioTracks AudioTrack[]
-  people      ContentPerson[]
+  languages        ContentLanguage[]
+  media            Media[]
+  subtitles        Subtitle[]
+  audioTracks      AudioTrack[]
+  people           ContentPerson[]
+  myListEntries    MyList[]
+  watchHistory     WatchHistory[]
+  continueWatching ContinueWatching[]
+  ratings          Rating[]
+  reviews          Review[]
 
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([slug])
   @@index([status])
@@ -204,110 +227,113 @@ model Content {
 }
 
 model Movie {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  contentId   String   @unique
-  content     Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId String  @unique
+  content   Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model TvShow {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  contentId   String   @unique
-  content     Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId String  @unique
+  content   Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
-  seasons     Season[]
+  seasons Season[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Season {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  tvShowId    String
-  tvShow      TvShow   @relation(fields: [tvShowId], references: [id], onDelete: Cascade)
+  tvShowId String
+  tvShow   TvShow @relation(fields: [tvShowId], references: [id], onDelete: Cascade)
 
-  seasonNo    Int
-  title       String
+  seasonNo Int
+  title    String
 
-  episodes    Episode[]
+  episodes Episode[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([tvShowId, seasonNo])
 }
 
 model Episode {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  seasonId    String
-  season      Season   @relation(fields: [seasonId], references: [id], onDelete: Cascade)
+  seasonId String
+  season   Season @relation(fields: [seasonId], references: [id], onDelete: Cascade)
 
-  episodeNo   Int
-  title       String
+  episodeNo Int
+  title     String
 
-  duration    Int?
+  duration         Int?
+  watchHistory     WatchHistory[]
+  continueWatching ContinueWatching[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([seasonId, episodeNo])
 }
 
 model Category {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  name        String   @unique
-  slug        String   @unique
+  name String @unique
+  slug String @unique
 
-  contents    ContentCategory[]
+  contents ContentCategory[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Genre {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  name        String   @unique
-  slug        String   @unique
+  name String @unique
+  slug String @unique
 
-  contents    ContentGenre[]
+  contents ContentGenre[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model ContentCategory {
-  contentId   String
-  categoryId  String
+  contentId  String
+  categoryId String
 
-  content      Content   @relation(fields: [contentId], references: [id], onDelete: Cascade)
-  category     Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  content  Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@id([contentId, categoryId])
 }
 
 model ContentGenre {
-  contentId   String
-  genreId     String
+  contentId String
+  genreId   String
 
-  content     Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
-  genre       Genre   @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  genre   Genre   @relation(fields: [genreId], references: [id], onDelete: Cascade)
 
   @@id([contentId, genreId])
 }
-model Language {
-  id        String   @id @default(cuid())
-  name      String
-  code      LanguageCode @unique
 
-  contents  ContentLanguage[]
+model Language {
+  id   String       @id @default(cuid())
+  name String
+  code LanguageCode @unique
+
+  contents ContentLanguage[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -317,92 +343,179 @@ model ContentLanguage {
   contentId  String
   languageId String
 
-  content    Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
-  language   Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
+  content  Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  language Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
 
   @@id([contentId, languageId])
 }
 
 model Media {
-  id          String    @id @default(cuid())
+  id String @id @default(cuid())
 
-  contentId   String
-  content     Content   @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId String
+  content   Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
-  type        MediaType
+  type MediaType
 
-  url         String
-  publicId    String?
+  url      String
+  publicId String?
 
-  width       Int?
-  height      Int?
+  width  Int?
+  height Int?
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([contentId])
   @@index([type])
 }
 
 model Subtitle {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  contentId   String
-  content     Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId String
+  content   Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
-  language    LanguageCode
+  language LanguageCode
 
-  format      SubtitleFormat
+  format SubtitleFormat
 
-  url         String
+  url String
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 model AudioTrack {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  contentId   String
-  content     Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId String
+  content   Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
 
-  language    LanguageCode
+  language LanguageCode
 
-  type        AudioType
+  type AudioType
 
-  url         String
+  url String
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 }
+
 model Person {
-  id          String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  name        String
-  slug        String   @unique
+  name String
+  slug String @unique
 
-  biography   String?  @db.Text
+  biography String? @db.Text
 
   profileImage String?
 
-  isActive    Boolean  @default(true)
+  isActive Boolean @default(true)
 
-  contents    ContentPerson[]
+  contents ContentPerson[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([name])
 }
 
 model ContentPerson {
-  contentId   String
-  personId    String
+  contentId String
+  personId  String
 
   role         PersonRole
-  displayOrder Int       @default(0)
+  displayOrder Int        @default(0)
 
-  content      Content   @relation(fields: [contentId], references: [id], onDelete: Cascade)
-  person       Person    @relation(fields: [personId], references: [id], onDelete: Cascade)
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  person  Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
 
   @@id([contentId, personId, role])
   @@index([personId])
+}
+
+model MyList {
+  profileId String
+  contentId String
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@id([profileId, contentId])
+}
+
+model WatchHistory {
+  id String @id @default(cuid())
+
+  profileId String
+  contentId String
+
+  episodeId String?
+
+  watchedSeconds Int @default(0)
+
+  completed Boolean @default(false)
+
+  profile Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  content Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  episode Episode? @relation(fields: [episodeId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([profileId])
+  @@index([contentId])
+}
+
+model ContinueWatching {
+  profileId String
+  contentId String
+
+  episodeId String?
+
+  currentSecond Int
+
+  profile Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  content Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  episode Episode? @relation(fields: [episodeId], references: [id], onDelete: SetNull)
+
+  updatedAt DateTime @updatedAt
+
+  @@id([profileId, contentId])
+}
+
+model Rating {
+  profileId String
+  contentId String
+
+  value RatingValue
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@id([profileId, contentId])
+}
+
+model Review {
+  id String @id @default(cuid())
+
+  profileId String
+  contentId String
+
+  title  String?
+  review String  @db.Text
+
+  isVisible Boolean @default(true)
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([contentId])
 }
