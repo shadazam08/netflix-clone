@@ -9,6 +9,7 @@ export const AUTH_MESSAGES = {
   REGISTION_FAIL:"Registration failed.",
   LOGIN_FAILD:"Login failed.",
   UNAUTHORIZED: "Unauthorized.",
+  FORBIDDEN: "Forbidden.",
 } as const;
 
 export const USER_ROLES = {
