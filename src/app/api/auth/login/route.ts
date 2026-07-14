@@ -1,10 +1,10 @@
 import { NextRequest } from "next/server";
 
 import { AUTH_MESSAGES } from "@/server/auth";
+import { AuthMapper } from "@/server/mappers";
 import { ApiResponse, handleApiError } from "@/server/lib";
 import { AuthService } from "@/server/services";
 import { loginSchema } from "@/server/validations";
-import { toAuthResponseDto } from "@/server/dto";
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     );
 
     return ApiResponse.success(
-      toAuthResponseDto(user),
+      AuthMapper.toResponse(user),
       AUTH_MESSAGES.LOGIN_SUCCESS
     );
   } catch (error) {
