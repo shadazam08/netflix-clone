@@ -21,15 +21,28 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  async create(data: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    roleId: string;
-  }) {
+  async create(data: { firstName: string; lastName: string; email: string; password: string; roleId: string }) {
     return this.db.user.create({
-      data,
+      data: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: data.password,
+        roleId: data.roleId,
+        status: "ACTIVE",
+
+        profiles: {
+          create: {
+            name: data.firstName,
+            type: "ADULT",
+            isPrimary: true,
+          },
+        },
+      },
+      include: {
+        role: true,
+        profiles: true,
+      },
     });
   }
 }
