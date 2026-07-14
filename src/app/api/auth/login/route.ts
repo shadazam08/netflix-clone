@@ -1,8 +1,12 @@
 import { NextRequest } from "next/server";
-import { loginSchema } from "@/server/validations";
-import { AuthService } from "@/server/services";
 import { AUTH_MESSAGES } from "@/server/auth";
-import { ApiResponse } from "@/server/lib/api-response";
+import { AuthService } from "@/server/services";
+import { loginSchema } from "@/server/validations";
+import {
+  ApiResponse,
+  AppError,
+  handleApiError,
+} from "@/server/lib";
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,14 +22,14 @@ export async function POST(request: NextRequest) {
     );
 
     if (!user) {
-      return ApiResponse.error(
+      throw new AppError(
         AUTH_MESSAGES.INVALID_CREDENTIALS,
         401
       );
     }
 
     if (user.status !== "ACTIVE") {
-      return ApiResponse.error(
+      throw new AppError(
         AUTH_MESSAGES.ACCOUNT_NOT_ACTIVE,
         403
       );
@@ -41,11 +45,6 @@ export async function POST(request: NextRequest) {
       AUTH_MESSAGES.LOGIN_SUCCESS
     );
   } catch (error) {
-    console.error(error);
-
-    return ApiResponse.error(
-      AUTH_MESSAGES.LOGIN_FAILD,
-      500
-    );
+    return handleApiError(error);
   }
 }

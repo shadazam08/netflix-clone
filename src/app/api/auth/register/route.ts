@@ -1,9 +1,13 @@
 import { NextRequest } from "next/server";
-import { registerSchema } from "@/server/validations";
+import { AUTH_MESSAGES } from "@/server/auth";
 import { UserRepository, RoleRepository } from "@/server/repositories";
 import { PasswordService } from "@/server/services";
-import { AUTH_MESSAGES } from "@/server/auth";
-import { ApiResponse } from "@/server/lib/api-response";
+import { registerSchema } from "@/server/validations";
+import {
+  ApiResponse,
+  AppError,
+  handleApiError,
+} from "@/server/lib";
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +19,7 @@ export async function POST(request: NextRequest) {
     const roles = new RoleRepository();
 
     if (await users.exists(data.email)) {
-      return ApiResponse.error(
+      throw new AppError(
         AUTH_MESSAGES.EMAIL_ALREADY_EXISTS,
         409
       );
@@ -24,13 +28,15 @@ export async function POST(request: NextRequest) {
     const role = await roles.getDefaultUserRole();
 
     if (!role) {
-      return ApiResponse.error(
+      throw new AppError(
         AUTH_MESSAGES.ROLE_NOT_FOUND,
         500
       );
     }
 
-    const password = await PasswordService.hash(data.password);
+    const password = await PasswordService.hash(
+      data.password
+    );
 
     const user = await users.create({
       firstName: data.firstName,
@@ -49,11 +55,6 @@ export async function POST(request: NextRequest) {
       201
     );
   } catch (error) {
-    console.error(error);
-
-    return ApiResponse.error(
-      AUTH_MESSAGES.REGISTION_FAIL,
-      500
-    );
+    return handleApiError(error);
   }
 }
