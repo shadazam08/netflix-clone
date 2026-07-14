@@ -131,6 +131,14 @@ enum DeviceType {
   WINDOWS
   MAC
 }
+enum HomepageRowType {
+  HERO
+  TRENDING
+  POPULAR
+  LATEST
+  TOP_RATED
+  CUSTOM
+}
 
 model Role {
   id          String  @id @default(cuid())
@@ -291,6 +299,7 @@ model Content {
   reviews          Review[]
   videoSources      VideoSource[]
   playbackProgress  PlaybackProgress[]
+  homepageRows HomepageContent[]
 
   overview       String?   @db.Text
   tagline        String?
@@ -776,4 +785,53 @@ model Device {
   lastLoginAt   DateTime?
 
   createdAt     DateTime    @default(now())
+}
+model HomepageSection {
+  id          String   @id @default(cuid())
+
+  title       String
+
+  slug        String   @unique
+
+  type        HomepageRowType
+
+  isActive    Boolean  @default(true)
+
+  displayOrder Int
+
+  rows        HomepageContent[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([displayOrder])
+}
+
+model HomepageContent {
+  sectionId   String
+  contentId   String
+
+  displayOrder Int
+
+  section     HomepageSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  content     Content         @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  @@id([sectionId, contentId])
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+
+  title       String
+
+  message     String   @db.Text
+
+  isActive    Boolean  @default(true)
+
+  startsAt    DateTime?
+
+  endsAt      DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
