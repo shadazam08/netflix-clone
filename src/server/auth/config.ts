@@ -1,8 +1,9 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthConfig } from "next-auth";
-
 import { prisma } from "@/server/db/prisma";
+import { AuthService } from "@/server/services";
+import { loginSchema } from "@/server/validations";
 
 export const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
@@ -18,9 +19,23 @@ export const authConfig: NextAuthConfig = {
         password: {},
       },
 
-      async authorize() {
-        // Will implement in next phase
-        return null;
+      async authorize(credentials) {
+        const data = loginSchema.parse(credentials);
+
+        const authService = new AuthService();
+
+        const user = await authService.validateUser(
+          data.email,
+          data.password
+        );
+
+        return {
+          id: user.id,
+          email: user.email,
+          name:
+            `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim(),
+          role: user.role.name,
+        };
       },
     }),
   ],
