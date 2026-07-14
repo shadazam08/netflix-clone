@@ -27,8 +27,10 @@ enum ContentType {
 
 enum ContentStatus {
   DRAFT
+  UNDER_REVIEW
   PUBLISHED
   INACTIVE
+  ARCHIVED
 }
 
 enum ContentVisibility {
@@ -186,8 +188,13 @@ model User {
   id              String     @id @default(cuid())
   email           String     @unique
   password        String
+  emailVerified   Boolean    @default(false)
   emailVerifiedAt DateTime?
   status          UserStatus @default(PENDING)
+  firstName       String?
+  lastName        String?
+  avatar          String?
+  lastLoginAt     DateTime?
 
   roleId String
   role   Role   @relation(fields: [roleId], references: [id])
@@ -198,8 +205,11 @@ model User {
   auditLogs AuditLog[]
   devices   Device[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  notifications Notification[]
+
+  @@index([email])
 }
 
 model Profile {
@@ -209,6 +219,10 @@ model Profile {
   pin      String?
   type     ProfileType @default(ADULT)
   language String      @default("en")
+
+  isPrimary  Boolean   @default(false)
+  isLocked   Boolean   @default(false)
+  lastUsedAt DateTime?
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -223,6 +237,7 @@ model Profile {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([userId, name])
   @@index([userId])
 }
 
@@ -315,6 +330,12 @@ model Content {
   studioId String?
   studio   Studio? @relation(fields: [studioId], references: [id])
 
+  posterUrl      String?
+  bannerUrl      String?
+  logoUrl        String?
+  thumbnailUrl   String?
+  searchKeywords String? @db.Text
+
   publishedAt DateTime?
   publishedBy String?
 
@@ -334,6 +355,9 @@ model Content {
   @@index([releaseYear])
   @@index([isFeatured])
   @@index([isTrending])
+  @@index([status, type])
+  @@index([status, isFeatured])
+  @@index([status, releaseYear])
 }
 
 model Movie {
@@ -469,6 +493,9 @@ model Media {
 
   type MediaType
 
+  sortOrder Int     @default(0)
+  isDefault Boolean @default(false)
+
   url      String
   publicId String?
 
@@ -521,6 +548,10 @@ model Person {
   biography String? @db.Text
 
   profileImage String?
+
+  birthDate DateTime?
+  deathDate DateTime?
+  knownFor  String?
 
   isActive Boolean @default(true)
 
@@ -579,6 +610,7 @@ model WatchHistory {
 
   @@index([profileId])
   @@index([contentId])
+  @@index([profileId, updatedAt])
 }
 
 model ContinueWatching {
@@ -630,6 +662,7 @@ model Review {
   updatedAt DateTime @updatedAt
 
   @@index([contentId])
+  @@index([profileId])
 }
 
 model Notification {
@@ -638,7 +671,9 @@ model Notification {
   title   String
   message String @db.Text
 
-  type NotificationType
+  type   NotificationType
+  userId String?
+  user   User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   isActive Boolean @default(true)
 
@@ -669,6 +704,8 @@ model AuditLog {
 
   ipAddress String?
   userAgent String?
+
+  metadata Json?
 
   createdAt DateTime @default(now())
 
@@ -741,6 +778,9 @@ model VideoSource {
 
   duration Int
 
+  bitrate Int?
+  codec   String?
+
   isDefault Boolean @default(false)
 
   createdAt DateTime @default(now())
@@ -773,6 +813,7 @@ model PlaybackProgress {
   updatedAt DateTime @updatedAt
 
   @@unique([profileId, contentId, episodeId])
+  @@index([profileId, updatedAt])
 }
 
 model Device {
@@ -786,6 +827,9 @@ model Device {
   type DeviceType
 
   identifier String @unique
+
+  ipAddress String?
+  userAgent String?
 
   lastLoginAt DateTime?
 
