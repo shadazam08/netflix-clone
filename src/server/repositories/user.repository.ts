@@ -21,7 +21,13 @@ export class UserRepository extends BaseRepository {
     });
   }
 
-  async create(data: { firstName: string; lastName: string; email: string; password: string; roleId: string }) {
+  async create(data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    roleId: string;
+  }) {
     return this.db.user.create({
       data: {
         firstName: data.firstName,
@@ -33,9 +39,10 @@ export class UserRepository extends BaseRepository {
 
         profiles: {
           create: {
-            name: data.firstName,
+            name: `${data.firstName} ${data.lastName}`,
             type: "ADULT",
             isPrimary: true,
+            isLocked: false,
           },
         },
       },
@@ -44,5 +51,13 @@ export class UserRepository extends BaseRepository {
         profiles: true,
       },
     });
+  }
+
+  async exists(email: string) {
+    const count = await this.db.user.count({
+      where: { email },
+    });
+
+    return count > 0;
   }
 }
