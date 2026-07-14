@@ -114,6 +114,23 @@ enum PermissionAction {
   PUBLISH
   DEACTIVATE
 }
+enum VideoQuality {
+  P360
+  P480
+  P720
+  P1080
+  P1440
+  P2160
+}
+
+enum DeviceType {
+  WEB
+  ANDROID
+  IOS
+  TV
+  WINDOWS
+  MAC
+}
 
 model Role {
   id          String  @id @default(cuid())
@@ -168,6 +185,7 @@ model User {
   accounts  Account[]
   sessions  Session[]
   auditLogs AuditLog[]
+  devices Device[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -189,6 +207,7 @@ model Profile {
   continueWatching ContinueWatching[]
   ratings          Rating[]
   reviews          Review[]
+  playbackProgress PlaybackProgress[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -270,6 +289,8 @@ model Content {
   continueWatching ContinueWatching[]
   ratings          Rating[]
   reviews          Review[]
+  videoSources      VideoSource[]
+  playbackProgress  PlaybackProgress[]
 
   overview       String?   @db.Text
   tagline        String?
@@ -354,6 +375,8 @@ model Episode {
   duration         Int?
   watchHistory     WatchHistory[]
   continueWatching ContinueWatching[]
+  videoSources      VideoSource[]
+  playbackProgress  PlaybackProgress[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -684,4 +707,73 @@ model ContentTag {
   tag          Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@id([contentId, tagId])
+}
+model VideoSource {
+  id          String        @id @default(cuid())
+
+  contentId   String
+  content     Content       @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  episodeId   String?
+  episode     Episode?      @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+
+  quality     VideoQuality
+
+  url         String
+
+  mimeType    String
+
+  fileSize    BigInt?
+
+  duration    Int
+
+  isDefault   Boolean       @default(false)
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([contentId])
+  @@index([episodeId])
+  @@index([quality])
+}
+
+model PlaybackProgress {
+  id              String      @id @default(cuid())
+
+  profileId       String
+  profile         Profile     @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  contentId       String
+  content         Content     @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  episodeId       String?
+  episode         Episode?    @relation(fields: [episodeId], references: [id], onDelete: SetNull)
+
+  watchedSeconds  Int          @default(0)
+
+  completed       Boolean      @default(false)
+
+  lastPlayedAt    DateTime     @default(now())
+
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@unique([profileId, contentId, episodeId])
+}
+
+model Device {
+  id            String      @id @default(cuid())
+
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name          String
+
+  type          DeviceType
+
+  identifier    String      @unique
+
+  lastLoginAt   DateTime?
+
+  createdAt     DateTime    @default(now())
 }
