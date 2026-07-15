@@ -30,6 +30,7 @@ export const CONTENT_MESSAGES = {
   UPDATED_SUCCESS: "Content updated successfully.",
   DELETED_SUCCESS: "Content deleted successfully.",
   NOT_FOUND: "Content not found.",
+  SLUG_EXISTS: "Content slug already exists.",
 } as const;
 
 export const USER_ROLES = {
