@@ -1,0 +1,32 @@
+import { NextRequest } from "next/server";
+
+import { CONTENT_MESSAGES } from "@/server/auth";
+import { ApiResponse, handleApiError } from "@/server/lib";
+import { ContentMapper } from "@/server/mappers";
+import { ContentService } from "@/server/services";
+
+interface RouteContext {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export async function GET(
+  _request: NextRequest,
+  { params }: RouteContext
+) {
+  try {
+    const { id } = await params;
+
+    const service = new ContentService();
+
+    const content = await service.getById(id);
+
+    return ApiResponse.success(
+      ContentMapper.toResponse(content),
+      CONTENT_MESSAGES.FETCH_ONE_SUCCESS
+    );
+  } catch (error) {
+    return handleApiError(error);
+  }
+}
