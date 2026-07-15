@@ -29,14 +29,26 @@ export class ProfileService {
   async updateProfile(
     id: string,
     data: {
-      name: string;
+      name?: string;
       avatar?: string | null;
     }
   ) {
+    const profile = await this.profiles.findById(id);
+
+    if (!profile) {
+      throw new AppError("Profile not found.", 404);
+    }
+
     return this.profiles.update(id, data);
   }
 
   async deleteProfile(id: string) {
+    const profile = await this.profiles.findById(id);
+
+    if (!profile) {
+      throw new AppError("Profile not found.", 404);
+    }
+
     return this.profiles.delete(id);
   }
 }
