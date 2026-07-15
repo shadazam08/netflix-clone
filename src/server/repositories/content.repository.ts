@@ -105,4 +105,51 @@ export class ContentRepository extends BaseRepository {
       },
     });
   }
+
+  async create(data: Prisma.ContentCreateInput) {
+    return this.db.content.create({
+      data,
+      include: {
+        categoryLinks: {
+          include: { category: true },
+        },
+        genreLinks: {
+          include: { genre: true },
+        },
+        languages: {
+          include: { language: true },
+        },
+        media: true,
+        movie: true,
+        tvShow: true,
+      },
+    });
+  }
+
+  async update(id: string, data: Prisma.ContentUpdateInput) {
+    return this.db.content.update({
+      where: { id },
+      data,
+      include: {
+        categoryLinks: {
+          include: { category: true },
+        },
+        genreLinks: {
+          include: { genre: true },
+        },
+        languages: {
+          include: { language: true },
+        },
+        media: true,
+        movie: true,
+        tvShow: true,
+      },
+    });
+  }
+
+  async delete(id: string) {
+    return this.db.content.delete({
+      where: { id },
+    });
+  }
 }
