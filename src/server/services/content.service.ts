@@ -53,7 +53,15 @@ export class ContentService {
   }
 
   async update(id: string, data: UpdateContentDto) {
-    await this.getById(id);
+    const existing = await this.getById(id);
+
+    if (data.slug && data.slug !== existing.slug) {
+      const slugExists = await this.contents.findBySlug(data.slug);
+
+      if (slugExists) {
+        throw new AppError(CONTENT_MESSAGES.SLUG_EXISTS, 409);
+      }
+    }
 
     return this.contents.update(id, data);
   }
