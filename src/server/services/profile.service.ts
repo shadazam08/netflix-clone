@@ -18,11 +18,13 @@ export class ProfileService {
     return profile;
   }
 
-  async createProfile(data: {
-    userId: string;
-    name: string;
-    type: "ADULT" | "KIDS";
-  }) {
+  async createProfile(data: { userId: string; name: string; type: "ADULT" | "KIDS" }) {
+    const profiles = await this.profiles.findByUserId(data.userId);
+
+    if (profiles.length >= 5) {
+      throw new AppError("Maximum number of profiles reached.", 400);
+    }
+
     return this.profiles.create(data);
   }
 
@@ -31,7 +33,7 @@ export class ProfileService {
     data: {
       name?: string;
       avatar?: string | null;
-    }
+    },
   ) {
     const profile = await this.profiles.findById(id);
 
