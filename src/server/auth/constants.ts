@@ -20,6 +20,7 @@ export const PROFILE_MESSAGES = {
   DELETED_SUCCESS: "Profile deleted successfully.",
   NOT_FOUND: "Profile not found.",
   LIMIT_EXCEEDED: "Maximum number of profiles reached.",
+  LAST_PROFILE: "At least one profile must exist.",
 } as const;
 
 export const USER_ROLES = {

@@ -1,5 +1,6 @@
 import { AppError } from "@/server/lib";
 import { ProfileRepository } from "@/server/repositories";
+import { PROFILE_MESSAGES } from "@/server/auth";
 
 export class ProfileService {
   private readonly profiles = new ProfileRepository();
@@ -12,7 +13,7 @@ export class ProfileService {
     const profile = await this.profiles.findById(id);
 
     if (!profile) {
-      throw new AppError("Profile not found.", 404);
+      throw new AppError(PROFILE_MESSAGES.NOT_FOUND, 404);
     }
 
     return profile;
@@ -22,7 +23,7 @@ export class ProfileService {
     const profiles = await this.profiles.findByUserId(data.userId);
 
     if (profiles.length >= 5) {
-      throw new AppError("Maximum number of profiles reached.", 400);
+      throw new AppError(PROFILE_MESSAGES.LIMIT_EXCEEDED, 400);
     }
 
     return this.profiles.create(data);
@@ -38,7 +39,7 @@ export class ProfileService {
     const profile = await this.profiles.findById(id);
 
     if (!profile) {
-      throw new AppError("Profile not found.", 404);
+      throw new AppError(PROFILE_MESSAGES.NOT_FOUND, 404);
     }
 
     return this.profiles.update(id, data);
@@ -48,7 +49,13 @@ export class ProfileService {
     const profile = await this.profiles.findById(id);
 
     if (!profile) {
-      throw new AppError("Profile not found.", 404);
+      throw new AppError(PROFILE_MESSAGES.NOT_FOUND, 404);
+    }
+
+    const profiles = await this.profiles.findByUserId(profile.userId);
+
+    if (profiles.length <= 1) {
+      throw new AppError(PROFILE_MESSAGES.LAST_PROFILE, 400);
     }
 
     return this.profiles.delete(id);

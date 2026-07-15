@@ -30,3 +30,29 @@ export async function GET(_request: NextRequest, { params }: RouteContext) {
     return handleApiError(error);
   }
 }
+
+export async function DELETE(
+  _request: NextRequest,
+  { params }: RouteContext
+) {
+  try {
+    const user = await getCurrentUser();
+
+    if (!user) {
+      return ApiResponse.error("Unauthorized", 401);
+    }
+
+    const { id } = await params;
+
+    const service = new ProfileService();
+
+    await service.deleteProfile(id);
+
+    return ApiResponse.success(
+      null,
+      PROFILE_MESSAGES.DELETED_SUCCESS
+    );
+  } catch (error) {
+    return handleApiError(error);
+  }
+}
