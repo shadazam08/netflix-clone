@@ -14,6 +14,7 @@ export const AUTH_MESSAGES = {
 
 export const PROFILE_MESSAGES = {
   FETCH_SUCCESS: "Profiles fetched successfully.",
+  FETCH_ONE_SUCCESS: "Profile fetched successfully.",
   CREATED_SUCCESS: "Profile created successfully.",
   UPDATED_SUCCESS: "Profile updated successfully.",
   DELETED_SUCCESS: "Profile deleted successfully.",
