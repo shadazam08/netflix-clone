@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-import { CONTENT_MESSAGES } from "@/server/auth";
+import { CONTENT_MESSAGES, requireAdmin  } from "@/server/auth";
 import { ApiResponse, handleApiError } from "@/server/lib";
 import { ContentMapper } from "@/server/mappers";
 import { ContentService } from "@/server/services";
@@ -25,6 +25,27 @@ export async function GET(
     return ApiResponse.success(
       ContentMapper.toResponse(content),
       CONTENT_MESSAGES.FETCH_ONE_SUCCESS
+    );
+  } catch (error) {
+    return handleApiError(error);
+  }
+}
+export async function DELETE(
+  _request: NextRequest,
+  { params }: RouteContext
+) {
+  try {
+    await requireAdmin();
+
+    const { id } = await params;
+
+    const service = new ContentService();
+
+    await service.delete(id);
+
+    return ApiResponse.success(
+      null,
+      CONTENT_MESSAGES.DELETED_SUCCESS
     );
   } catch (error) {
     return handleApiError(error);
