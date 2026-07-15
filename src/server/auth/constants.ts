@@ -12,6 +12,14 @@ export const AUTH_MESSAGES = {
   FORBIDDEN: "Forbidden.",
 } as const;
 
+export const PROFILE_MESSAGES = {
+  FETCH_SUCCESS: "Profiles fetched successfully.",
+  CREATED_SUCCESS: "Profile created successfully.",
+  UPDATED_SUCCESS: "Profile updated successfully.",
+  DELETED_SUCCESS: "Profile deleted successfully.",
+  NOT_FOUND: "Profile not found.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
