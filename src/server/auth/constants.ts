@@ -23,6 +23,15 @@ export const PROFILE_MESSAGES = {
   LAST_PROFILE: "At least one profile must exist.",
 } as const;
 
+export const CONTENT_MESSAGES = {
+  FETCH_SUCCESS: "Content fetched successfully.",
+  FETCH_ONE_SUCCESS: "Content fetched successfully.",
+  CREATED_SUCCESS: "Content created successfully.",
+  UPDATED_SUCCESS: "Content updated successfully.",
+  DELETED_SUCCESS: "Content deleted successfully.",
+  NOT_FOUND: "Content not found.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
