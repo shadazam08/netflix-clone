@@ -5,3 +5,4 @@ export * from "./password.service";
 export * from "./profile.service";
 export * from "./register.service";
 export * from "./category.service";
+export * from "./genre.service";

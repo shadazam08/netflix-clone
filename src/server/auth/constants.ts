@@ -6,8 +6,8 @@ export const AUTH_MESSAGES = {
   REGISTRATION_SUCCESS: "Registration successful.",
   LOGIN_SUCCESS: "Login successful.",
   LOGOUT_SUCCESS: "Logout successful.",
-  REGISTION_FAIL:"Registration failed.",
-  LOGIN_FAILD:"Login failed.",
+  REGISTION_FAIL: "Registration failed.",
+  LOGIN_FAILD: "Login failed.",
   UNAUTHORIZED: "Unauthorized.",
   FORBIDDEN: "Forbidden.",
 } as const;
@@ -51,6 +51,16 @@ export const CATEGORY_MESSAGES = {
   DELETED_SUCCESS: "Category deleted successfully.",
   NOT_FOUND: "Category not found.",
   SLUG_EXISTS: "Category slug already exists.",
+} as const;
+
+export const GENRE_MESSAGES = {
+  FETCH_SUCCESS: "Genres fetched successfully.",
+  FETCH_ONE_SUCCESS: "Genre fetched successfully.",
+  CREATED_SUCCESS: "Genre created successfully.",
+  UPDATED_SUCCESS: "Genre updated successfully.",
+  DELETED_SUCCESS: "Genre deleted successfully.",
+  NOT_FOUND: "Genre not found.",
+  SLUG_EXISTS: "Genre slug already exists.",
 } as const;
 
 export const USER_ROLES = {
