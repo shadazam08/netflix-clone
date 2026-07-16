@@ -1,9 +1,7 @@
 import { AppError } from "@/server/lib";
 import { MediaRepository } from "@/server/repositories";
-import type {
-  CreateMediaDto,
-  UpdateMediaDto,
-} from "@/server/dto";
+import type { CreateMediaDto, UpdateMediaDto } from "@/server/dto";
+import { MEDIA_MESSAGES } from "@/server/auth";
 
 export class MediaService {
   private readonly media = new MediaRepository();
@@ -23,6 +21,14 @@ export class MediaService {
   }
 
   async create(data: CreateMediaDto) {
+    const existing = await this.media.findByContentId(data.contentId);
+
+    const singleMediaTypes = ["POSTER", "BANNER", "LOGO", "TRAILER", "VIDEO"];
+
+    if (singleMediaTypes.includes(data.type) && existing.some((item) => item.type === data.type)) {
+      throw new AppError(MEDIA_MESSAGES.ALREADY_EXISTS, 409);
+    }
+
     return this.media.create({
       content: {
         connect: {
@@ -37,10 +43,7 @@ export class MediaService {
     });
   }
 
-  async update(
-    id: string,
-    data: UpdateMediaDto
-  ) {
+  async update(id: string, data: UpdateMediaDto) {
     await this.getById(id);
 
     return this.media.update(id, {

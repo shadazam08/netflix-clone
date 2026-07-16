@@ -40,6 +40,7 @@ export const MEDIA_MESSAGES = {
   UPDATED_SUCCESS: "Media updated successfully.",
   DELETED_SUCCESS: "Media deleted successfully.",
   NOT_FOUND: "Media not found.",
+  ALREADY_EXISTS: "Media of this type already exists.",
 } as const;
 
 export const USER_ROLES = {
