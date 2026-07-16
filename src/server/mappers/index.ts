@@ -2,3 +2,4 @@ export * from "./auth.mapper";
 export * from "./content.mapper";
 export * from "./media.mapper";
 export * from "./profile.mapper";
+export * from "./category.mapper";
