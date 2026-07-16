@@ -33,6 +33,15 @@ export const CONTENT_MESSAGES = {
   SLUG_EXISTS: "Content slug already exists.",
 } as const;
 
+export const MEDIA_MESSAGES = {
+  FETCH_SUCCESS: "Media fetched successfully.",
+  FETCH_ONE_SUCCESS: "Media fetched successfully.",
+  CREATED_SUCCESS: "Media created successfully.",
+  UPDATED_SUCCESS: "Media updated successfully.",
+  DELETED_SUCCESS: "Media deleted successfully.",
+  NOT_FOUND: "Media not found.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
