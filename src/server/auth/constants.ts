@@ -43,6 +43,16 @@ export const MEDIA_MESSAGES = {
   ALREADY_EXISTS: "Media of this type already exists.",
 } as const;
 
+export const CATEGORY_MESSAGES = {
+  FETCH_SUCCESS: "Categories fetched successfully.",
+  FETCH_ONE_SUCCESS: "Category fetched successfully.",
+  CREATED_SUCCESS: "Category created successfully.",
+  UPDATED_SUCCESS: "Category updated successfully.",
+  DELETED_SUCCESS: "Category deleted successfully.",
+  NOT_FOUND: "Category not found.",
+  SLUG_EXISTS: "Category slug already exists.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
