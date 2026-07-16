@@ -44,7 +44,17 @@ export class MediaService {
   }
 
   async update(id: string, data: UpdateMediaDto) {
-    await this.getById(id);
+    const existing = await this.getById(id);
+
+    if (data.type && data.type !== existing.type) {
+      const media = await this.media.findByContentId(existing.contentId);
+
+      const singleMediaTypes = ["POSTER", "BANNER", "LOGO", "TRAILER", "VIDEO"];
+
+      if (singleMediaTypes.includes(data.type) && media.some((item) => item.id !== id && item.type === data.type)) {
+        throw new AppError(MEDIA_MESSAGES.ALREADY_EXISTS, 409);
+      }
+    }
 
     return this.media.update(id, {
       type: data.type,
