@@ -104,6 +104,17 @@ export const PERSON_MESSAGES = {
   SLUG_EXISTS: "Person slug already exists.",
 } as const;
 
+export const STUDIO_MESSAGES = {
+  LIST_SUCCESS: "Studios fetched successfully.",
+  GET_SUCCESS: "Studio fetched successfully.",
+  CREATE_SUCCESS: "Studio created successfully.",
+  UPDATE_SUCCESS: "Studio updated successfully.",
+  DELETE_SUCCESS: "Studio deleted successfully.",
+  NOT_FOUND: "Studio not found.",
+  NAME_EXISTS: "Studio name already exists.",
+  SLUG_EXISTS: "Studio slug already exists.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",

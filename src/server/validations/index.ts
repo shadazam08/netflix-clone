@@ -8,3 +8,4 @@ export * from "./language.schema";
 export * from "./country.schema";
 export * from "./tag.schema";
 export * from "./person.schema";
+export * from "./studio.schema";
