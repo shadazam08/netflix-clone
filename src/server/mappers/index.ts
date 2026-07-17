@@ -7,3 +7,4 @@ export * from "./genre.mapper";
 export * from "./language.mapper";
 export * from "./country.mapper";
 export * from "./tag.mapper";
+export * from "./person.mapper";

@@ -7,3 +7,4 @@ export * from "./genre.schema";
 export * from "./language.schema";
 export * from "./country.schema";
 export * from "./tag.schema";
+export * from "./person.schema";

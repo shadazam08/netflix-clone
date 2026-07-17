@@ -93,6 +93,17 @@ export const TAG_MESSAGES = {
   SLUG_EXISTS: "Tag slug already exists.",
 } as const;
 
+export const PERSON_MESSAGES = {
+  LIST_SUCCESS: "People fetched successfully.",
+  GET_SUCCESS: "Person fetched successfully.",
+  CREATE_SUCCESS: "Person created successfully.",
+  UPDATE_SUCCESS: "Person updated successfully.",
+  DELETE_SUCCESS: "Person deleted successfully.",
+  NOT_FOUND: "Person not found.",
+  NAME_EXISTS: "Person name already exists.",
+  SLUG_EXISTS: "Person slug already exists.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
