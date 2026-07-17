@@ -40,3 +40,23 @@ export async function PUT(request: Request, context: RouteContext) {
     return handleApiError(error);
   }
 }
+
+export async function DELETE(
+  _request: Request,
+  context: RouteContext
+) {
+  try {
+    await requireAdmin();
+
+    const { id } = await context.params;
+
+    await service.delete(id);
+
+    return ApiResponse.success(
+      null,
+      LANGUAGE_MESSAGES.DELETED_SUCCESS
+    );
+  } catch (error) {
+    return handleApiError(error);
+  }
+}
