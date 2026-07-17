@@ -5,3 +5,4 @@ export * from "./profile.dto";
 export * from "./register.dto";
 export * from "./category.dto";
 export * from "./genre.dto";
+export * from "./language.dto";
