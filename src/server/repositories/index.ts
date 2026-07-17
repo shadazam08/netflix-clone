@@ -10,3 +10,4 @@ export * from "./language.repository";
 export * from "./country.repository";
 export * from "./tag.repository";
 export * from "./person.repository";
+export * from "./studio.repository";
