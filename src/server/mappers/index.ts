@@ -9,3 +9,4 @@ export * from "./country.mapper";
 export * from "./tag.mapper";
 export * from "./person.mapper";
 export * from "./studio.mapper";
+export * from "./movie.mapper";
