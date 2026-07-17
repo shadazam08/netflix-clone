@@ -8,3 +8,4 @@ export * from "./category.service";
 export * from "./genre.service";
 export * from "./language.service";
 export * from "./country.service";
+export * from "./tag.service";

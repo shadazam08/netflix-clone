@@ -83,6 +83,16 @@ export const COUNTRY_MESSAGES = {
   CODE_ALREADY_EXISTS: "Country code already exists.",
 } as const;
 
+export const TAG_MESSAGES = {
+  FETCH_SUCCESS: "Tags fetched successfully.",
+  FETCH_ONE_SUCCESS: "Tag fetched successfully.",
+  CREATED_SUCCESS: "Tag created successfully.",
+  UPDATED_SUCCESS: "Tag updated successfully.",
+  DELETED_SUCCESS: "Tag deleted successfully.",
+  NOT_FOUND: "Tag not found.",
+  SLUG_EXISTS: "Tag slug already exists.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
