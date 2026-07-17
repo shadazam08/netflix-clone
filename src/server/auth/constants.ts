@@ -73,6 +73,16 @@ export const LANGUAGE_MESSAGES = {
   CODE_ALREADY_EXISTS: "Language code already exists.",
 } as const;
 
+export const COUNTRY_MESSAGES = {
+  FETCH_SUCCESS: "Countries fetched successfully.",
+  FETCH_ONE_SUCCESS: "Country fetched successfully.",
+  CREATED_SUCCESS: "Country created successfully.",
+  UPDATED_SUCCESS: "Country updated successfully.",
+  DELETED_SUCCESS: "Country deleted successfully.",
+  NOT_FOUND: "Country not found.",
+  CODE_ALREADY_EXISTS: "Country code already exists.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",

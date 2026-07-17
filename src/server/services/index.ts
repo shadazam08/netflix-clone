@@ -7,3 +7,4 @@ export * from "./register.service";
 export * from "./category.service";
 export * from "./genre.service";
 export * from "./language.service";
+export * from "./country.service";
