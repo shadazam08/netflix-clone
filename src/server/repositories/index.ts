@@ -8,3 +8,4 @@ export * from "./category.repository";
 export * from "./genre.repository";
 export * from "./language.repository";
 export * from "./country.repository";
+export * from "./tag.repository";

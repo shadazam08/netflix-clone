@@ -6,3 +6,4 @@ export * from "./category.mapper";
 export * from "./genre.mapper";
 export * from "./language.mapper";
 export * from "./country.mapper";
+export * from "./tag.mapper";
