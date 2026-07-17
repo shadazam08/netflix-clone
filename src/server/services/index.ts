@@ -11,3 +11,4 @@ export * from "./country.service";
 export * from "./tag.service";
 export * from "./person.service";
 export * from "./studio.service";
+export * from "./movie.service";
