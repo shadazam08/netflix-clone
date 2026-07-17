@@ -63,6 +63,16 @@ export const GENRE_MESSAGES = {
   SLUG_EXISTS: "Genre slug already exists.",
 } as const;
 
+export const LANGUAGE_MESSAGES = {
+  FETCH_SUCCESS: "Languages fetched successfully.",
+  FETCH_ONE_SUCCESS: "Language fetched successfully.",
+  CREATED_SUCCESS: "Language created successfully.",
+  UPDATED_SUCCESS: "Language updated successfully.",
+  DELETED_SUCCESS: "Language deleted successfully.",
+  NOT_FOUND: "Language not found.",
+  CODE_ALREADY_EXISTS: "Language code already exists.",
+} as const;
+
 export const USER_ROLES = {
   SUPER_ADMIN: "SUPER_ADMIN",
   ADMIN: "ADMIN",
