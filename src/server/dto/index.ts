@@ -6,3 +6,4 @@ export * from "./register.dto";
 export * from "./category.dto";
 export * from "./genre.dto";
 export * from "./language.dto";
+export * from "./country.dto";
