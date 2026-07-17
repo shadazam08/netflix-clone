@@ -5,3 +5,4 @@ export * from "./profile.mapper";
 export * from "./category.mapper";
 export * from "./genre.mapper";
 export * from "./language.mapper";
+export * from "./country.mapper";
