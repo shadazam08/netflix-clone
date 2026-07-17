@@ -5,3 +5,4 @@ export * from "./profile.schema";
 export * from "./category.schema";
 export * from "./genre.schema";
 export * from "./language.schema";
+export * from "./country.schema";
