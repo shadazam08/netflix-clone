@@ -20,3 +20,4 @@ export * from "./audio-track.dto";
 export * from "./rating.dto";
 export * from "./review.dto";
 export * from "./my-list.dto";
+export * from "./watch-history.dto";

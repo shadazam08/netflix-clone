@@ -21,3 +21,4 @@ export * from "./audio-track.repository";
 export * from "./rating.repository";
 export * from "./review.repository";
 export * from "./my-list.repository";
+export * from "./watch-history.repository";
