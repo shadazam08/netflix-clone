@@ -12,3 +12,4 @@ export * from "./tag.repository";
 export * from "./person.repository";
 export * from "./studio.repository";
 export * from "./movie.repository";
+export * from "./tv-show.repository";

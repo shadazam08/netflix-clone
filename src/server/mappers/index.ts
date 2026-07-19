@@ -10,3 +10,4 @@ export * from "./tag.mapper";
 export * from "./person.mapper";
 export * from "./studio.mapper";
 export * from "./movie.mapper";
+export * from "./tv-show.mapper";
