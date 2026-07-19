@@ -29,3 +29,4 @@ export * from "./device.mapper";
 export * from "./homepage-section.mapper";
 export * from "./homepage-content.mapper";
 export * from "./announcement.mapper";
+export * from "./permission.mapper";

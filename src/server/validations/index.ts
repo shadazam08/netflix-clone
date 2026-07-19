@@ -29,3 +29,4 @@ export * from "./device.schema";
 export * from "./homepage-section.schema";
 export * from "./homepage-content.schema";
 export * from "./announcement.schema";
+export * from "./permission.schema";

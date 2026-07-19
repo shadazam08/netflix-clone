@@ -31,3 +31,4 @@ export * from "./device.repository";
 export * from "./homepage-section.repository";
 export * from "./homepage-content.repository";
 export * from "./announcement.repository";
+export * from "./permission.repository";
