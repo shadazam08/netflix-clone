@@ -16,3 +16,4 @@ export * from "./season.dto";
 export * from "./episode.dto";
 export * from "./video-source.dto";
 export * from "./subtitle.dto";
+export * from "./audio-track.dto";
