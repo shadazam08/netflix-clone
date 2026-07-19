@@ -253,3 +253,15 @@ export const CONTINUE_WATCHING_MESSAGES = {
   EPISODE_NOT_FOUND: "Episode not found.",
   ALREADY_EXISTS: "Continue watching item already exists.",
 } as const;
+
+export const PLAYBACK_PROGRESS_MESSAGES = {
+  LIST_SUCCESS: "Playback progress retrieved successfully.",
+  GET_SUCCESS: "Playback progress retrieved successfully.",
+  CREATE_SUCCESS: "Playback progress created successfully.",
+  UPDATE_SUCCESS: "Playback progress updated successfully.",
+  DELETE_SUCCESS: "Playback progress deleted successfully.",
+  NOT_FOUND: "Playback progress not found.",
+  PROFILE_NOT_FOUND: "Profile not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  EPISODE_NOT_FOUND: "Episode not found.",
+} as const;

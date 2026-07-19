@@ -23,3 +23,4 @@ export * from "./review.service";
 export * from "./my-list.service";
 export * from "./watch-history.service";
 export * from "./continue-watching.service";
+export * from "./playback-progress.service";
