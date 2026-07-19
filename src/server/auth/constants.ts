@@ -206,3 +206,14 @@ export const RATING_MESSAGES = {
   PROFILE_NOT_FOUND: "Profile not found.",
   CONTENT_NOT_FOUND: "Content not found.",
 } as const;
+
+export const REVIEW_MESSAGES = {
+  LIST_SUCCESS: "Reviews fetched successfully.",
+  GET_SUCCESS: "Review fetched successfully.",
+  CREATE_SUCCESS: "Review created successfully.",
+  UPDATE_SUCCESS: "Review updated successfully.",
+  DELETE_SUCCESS: "Review deleted successfully.",
+  NOT_FOUND: "Review not found.",
+  PROFILE_NOT_FOUND: "Profile not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+} as const;
