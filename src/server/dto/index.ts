@@ -23,3 +23,4 @@ export * from "./my-list.dto";
 export * from "./watch-history.dto";
 export * from "./continue-watching.dto";
 export * from "./playback-progress.dto";
+export * from "./notification.dto";
