@@ -24,3 +24,4 @@ export * from "./continue-watching.mapper";
 export * from "./playback-progress.mapper";
 export * from "./notification.mapper";
 export * from "./system-setting.mapper";
+export * from "./audit-log.mapper";

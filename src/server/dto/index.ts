@@ -25,3 +25,4 @@ export * from "./continue-watching.dto";
 export * from "./playback-progress.dto";
 export * from "./notification.dto";
 export * from "./system-setting.dto";
+export * from "./audit-log.dto";

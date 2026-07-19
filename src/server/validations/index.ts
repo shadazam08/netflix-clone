@@ -24,3 +24,4 @@ export * from "./continue-watching.schema";
 export * from "./playback-progress.schema";
 export * from "./notification.schema";
 export * from "./system-setting.schema";
+export * from "./audit-log.schema";

@@ -26,3 +26,4 @@ export * from "./continue-watching.repository";
 export * from "./playback-progress.repository";
 export * from "./notification.repository";
 export * from "./system-setting.repository";
+export * from "./audit-log.repository";
