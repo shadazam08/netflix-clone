@@ -14,3 +14,4 @@ export * from "./studio.repository";
 export * from "./movie.repository";
 export * from "./tv-show.repository";
 export * from "./season.repository";
+export * from "./episode.repository";

@@ -144,27 +144,12 @@ export const TV_SHOW_MESSAGES = {
 } as const;
 
 export const SEASON_MESSAGES = {
-  LIST_SUCCESS:
-    "Seasons fetched successfully.",
-
-  GET_SUCCESS:
-    "Season fetched successfully.",
-
-  CREATE_SUCCESS:
-    "Season created successfully.",
-
-  UPDATE_SUCCESS:
-    "Season updated successfully.",
-
-  DELETE_SUCCESS:
-    "Season deleted successfully.",
-
-  NOT_FOUND:
-    "Season not found.",
-
-  TV_SHOW_NOT_FOUND:
-    "TV show not found.",
-
-  SEASON_ALREADY_EXISTS:
-    "Season number already exists for this TV show.",
+  LIST_SUCCESS: "Seasons fetched successfully.",
+  GET_SUCCESS: "Season fetched successfully.",
+  CREATE_SUCCESS: "Season created successfully.",
+  UPDATE_SUCCESS: "Season updated successfully.",
+  DELETE_SUCCESS: "Season deleted successfully.",
+  NOT_FOUND: "Season not found.",
+  TV_SHOW_NOT_FOUND: "TV show not found.",
+  SEASON_ALREADY_EXISTS: "Season number already exists for this TV show.",
 } as const;
