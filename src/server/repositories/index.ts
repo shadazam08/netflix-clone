@@ -27,3 +27,4 @@ export * from "./playback-progress.repository";
 export * from "./notification.repository";
 export * from "./system-setting.repository";
 export * from "./audit-log.repository";
+export * from "./device.repository";

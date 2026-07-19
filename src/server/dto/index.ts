@@ -26,3 +26,4 @@ export * from "./playback-progress.dto";
 export * from "./notification.dto";
 export * from "./system-setting.dto";
 export * from "./audit-log.dto";
+export * from "./device.dto";
