@@ -131,3 +131,14 @@ export const USER_ROLES = {
   ADMIN: "ADMIN",
   USER: "USER",
 } as const;
+
+export const TV_SHOW_MESSAGES = {
+  LIST_SUCCESS: "TV shows fetched successfully.",
+  GET_SUCCESS: "TV show fetched successfully.",
+  CREATE_SUCCESS: "TV show created successfully.",
+  UPDATE_SUCCESS: "TV show updated successfully.",
+  DELETE_SUCCESS: "TV show deleted successfully.",
+  NOT_FOUND: "TV show not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  CONTENT_ALREADY_ASSIGNED: "Content is already assigned to another TV show.",
+} as const;

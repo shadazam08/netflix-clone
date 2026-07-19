@@ -10,3 +10,4 @@ export * from "./tag.schema";
 export * from "./person.schema";
 export * from "./studio.schema";
 export * from "./movie.schema";
+export * from "./tv-show.schema";
