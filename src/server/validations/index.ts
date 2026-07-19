@@ -27,3 +27,4 @@ export * from "./system-setting.schema";
 export * from "./audit-log.schema";
 export * from "./device.schema";
 export * from "./homepage-section.schema";
+export * from "./homepage-content.schema";

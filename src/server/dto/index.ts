@@ -28,3 +28,4 @@ export * from "./system-setting.dto";
 export * from "./audit-log.dto";
 export * from "./device.dto";
 export * from "./homepage-section.dto";
+export * from "./homepage-content.dto";

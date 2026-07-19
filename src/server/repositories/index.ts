@@ -29,3 +29,4 @@ export * from "./system-setting.repository";
 export * from "./audit-log.repository";
 export * from "./device.repository";
 export * from "./homepage-section.repository";
+export * from "./homepage-content.repository";
