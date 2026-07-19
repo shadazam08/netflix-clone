@@ -175,3 +175,13 @@ export const VIDEO_SOURCE_MESSAGES = {
   CONTENT_NOT_FOUND: "Content not found.",
   EPISODE_NOT_FOUND: "Episode not found.",
 } as const;
+
+export const SUBTITLE_MESSAGES = {
+  LIST_SUCCESS: "Subtitles fetched successfully.",
+  GET_SUCCESS: "Subtitle fetched successfully.",
+  CREATE_SUCCESS: "Subtitle created successfully.",
+  UPDATE_SUCCESS: "Subtitle updated successfully.",
+  DELETE_SUCCESS: "Subtitle deleted successfully.",
+  NOT_FOUND: "Subtitle not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+} as const;
