@@ -24,3 +24,4 @@ export * from "./watch-history.dto";
 export * from "./continue-watching.dto";
 export * from "./playback-progress.dto";
 export * from "./notification.dto";
+export * from "./system-setting.dto";

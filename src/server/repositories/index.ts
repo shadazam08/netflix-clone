@@ -25,3 +25,4 @@ export * from "./watch-history.repository";
 export * from "./continue-watching.repository";
 export * from "./playback-progress.repository";
 export * from "./notification.repository";
+export * from "./system-setting.repository";
