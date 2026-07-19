@@ -285,3 +285,13 @@ export const SYSTEM_SETTING_MESSAGES = {
   NOT_FOUND: "System setting not found.",
   KEY_ALREADY_EXISTS: "A system setting with this key already exists.",
 } as const;
+
+export const AUDIT_LOG_MESSAGES = {
+  LIST_SUCCESS: "Audit logs retrieved successfully.",
+  GET_SUCCESS: "Audit log retrieved successfully.",
+  CREATE_SUCCESS: "Audit log created successfully.",
+  UPDATE_SUCCESS: "Audit log updated successfully.",
+  DELETE_SUCCESS: "Audit log deleted successfully.",
+  NOT_FOUND: "Audit log not found.",
+  USER_NOT_FOUND: "User not found.",
+} as const;
