@@ -316,3 +316,15 @@ export const HOMEPAGE_SECTION_MESSAGES = {
   NOT_FOUND: "Homepage section not found.",
   SLUG_ALREADY_EXISTS: "Homepage section slug already exists.",
 } as const;
+
+export const HOMEPAGE_CONTENT_MESSAGES = {
+  LIST_SUCCESS: "Homepage contents retrieved successfully.",
+  GET_SUCCESS: "Homepage content retrieved successfully.",
+  CREATE_SUCCESS: "Homepage content created successfully.",
+  UPDATE_SUCCESS: "Homepage content updated successfully.",
+  DELETE_SUCCESS: "Homepage content deleted successfully.",
+  NOT_FOUND: "Homepage content not found.",
+  SECTION_NOT_FOUND: "Homepage section not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  ALREADY_EXISTS: "Homepage content already exists.",
+} as const;
