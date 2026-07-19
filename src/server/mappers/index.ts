@@ -18,3 +18,4 @@ export * from "./subtitle.mapper";
 export * from "./audio-track.mapper";
 export * from "./rating.mapper";
 export * from "./review.mapper";
+export * from "./my-list.mapper";
