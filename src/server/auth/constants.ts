@@ -295,3 +295,14 @@ export const AUDIT_LOG_MESSAGES = {
   NOT_FOUND: "Audit log not found.",
   USER_NOT_FOUND: "User not found.",
 } as const;
+
+export const DEVICE_MESSAGES = {
+  LIST_SUCCESS: "Devices retrieved successfully.",
+  GET_SUCCESS: "Device retrieved successfully.",
+  CREATE_SUCCESS: "Device created successfully.",
+  UPDATE_SUCCESS: "Device updated successfully.",
+  DELETE_SUCCESS: "Device deleted successfully.",
+  NOT_FOUND: "Device not found.",
+  USER_NOT_FOUND: "User not found.",
+  IDENTIFIER_ALREADY_EXISTS: "Device identifier already exists.",
+} as const;

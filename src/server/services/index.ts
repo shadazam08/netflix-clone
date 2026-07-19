@@ -27,3 +27,4 @@ export * from "./playback-progress.service";
 export * from "./notification.service";
 export * from "./system-setting.service";
 export * from "./audit-log.service";
+export * from "./device.service";
