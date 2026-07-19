@@ -164,3 +164,14 @@ export const EPISODE_MESSAGES = {
   SEASON_NOT_FOUND: "Season not found.",
   EPISODE_ALREADY_EXISTS: "Episode number already exists for this season.",
 } as const;
+
+export const VIDEO_SOURCE_MESSAGES = {
+  LIST_SUCCESS: "Video sources fetched successfully.",
+  GET_SUCCESS: "Video source fetched successfully.",
+  CREATE_SUCCESS: "Video source created successfully.",
+  UPDATE_SUCCESS: "Video source updated successfully.",
+  DELETE_SUCCESS: "Video source deleted successfully.",
+  NOT_FOUND: "Video source not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  EPISODE_NOT_FOUND: "Episode not found.",
+} as const;

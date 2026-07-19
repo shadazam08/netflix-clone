@@ -13,3 +13,4 @@ export * from "./movie.schema";
 export * from "./tv-show.schema";
 export * from "./season.schema";
 export * from "./episode.schema";
+export * from "./video-source.schema";
