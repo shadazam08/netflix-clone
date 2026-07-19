@@ -32,3 +32,4 @@ export * from "./homepage-section.service";
 export * from "./homepage-content.service";
 export * from "./announcement.service";
 export * from "./permission.service";
+export * from "./role-permission.service";

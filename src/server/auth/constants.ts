@@ -347,3 +347,14 @@ export const PERMISSION_MESSAGES = {
   NOT_FOUND: "Permission not found.",
   ALREADY_EXISTS: "Permission already exists.",
 } as const;
+
+export const ROLE_PERMISSION_MESSAGES = {
+  LIST_SUCCESS: "Role permissions retrieved successfully.",
+  GET_SUCCESS: "Role permission retrieved successfully.",
+  CREATE_SUCCESS: "Role permission created successfully.",
+  DELETE_SUCCESS: "Role permission deleted successfully.",
+  NOT_FOUND: "Role permission not found.",
+  ROLE_NOT_FOUND: "Role not found.",
+  PERMISSION_NOT_FOUND: "Permission not found.",
+  ALREADY_EXISTS: "Role permission already exists.",
+} as const;
