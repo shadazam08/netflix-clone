@@ -217,3 +217,14 @@ export const REVIEW_MESSAGES = {
   PROFILE_NOT_FOUND: "Profile not found.",
   CONTENT_NOT_FOUND: "Content not found.",
 } as const;
+
+export const MY_LIST_MESSAGES = {
+  LIST_SUCCESS: "My List fetched successfully.",
+  GET_SUCCESS: "My List item fetched successfully.",
+  CREATE_SUCCESS: "Content added to My List successfully.",
+  DELETE_SUCCESS: "Content removed from My List successfully.",
+  NOT_FOUND: "My List item not found.",
+  PROFILE_NOT_FOUND: "Profile not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  ALREADY_EXISTS: "Content already exists in My List.",
+} as const;

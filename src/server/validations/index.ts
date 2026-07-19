@@ -18,3 +18,4 @@ export * from "./subtitle.schema";
 export * from "./audio-track.schema";
 export * from "./rating.schema";
 export * from "./review.schema";
+export * from "./my-list.schema";

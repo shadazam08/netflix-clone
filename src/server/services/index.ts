@@ -20,3 +20,4 @@ export * from "./subtitle.service";
 export * from "./audio-track.service";
 export * from "./rating.service";
 export * from "./review.service";
+export * from "./my-list.service";
