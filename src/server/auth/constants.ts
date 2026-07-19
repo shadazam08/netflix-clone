@@ -185,3 +185,13 @@ export const SUBTITLE_MESSAGES = {
   NOT_FOUND: "Subtitle not found.",
   CONTENT_NOT_FOUND: "Content not found.",
 } as const;
+
+export const AUDIO_TRACK_MESSAGES = {
+  LIST_SUCCESS: "Audio tracks fetched successfully.",
+  GET_SUCCESS: "Audio track fetched successfully.",
+  CREATE_SUCCESS: "Audio track created successfully.",
+  UPDATE_SUCCESS: "Audio track updated successfully.",
+  DELETE_SUCCESS: "Audio track deleted successfully.",
+  NOT_FOUND: "Audio track not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+} as const;

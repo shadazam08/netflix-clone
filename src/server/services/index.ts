@@ -17,3 +17,4 @@ export * from "./season.service";
 export * from "./episode.service";
 export * from "./video-source.service";
 export * from "./subtitle.service";
+export * from "./audio-track.service";

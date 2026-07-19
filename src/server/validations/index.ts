@@ -15,3 +15,4 @@ export * from "./season.schema";
 export * from "./episode.schema";
 export * from "./video-source.schema";
 export * from "./subtitle.schema";
+export * from "./audio-track.schema";
