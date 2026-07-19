@@ -30,3 +30,4 @@ export * from "./homepage-section.schema";
 export * from "./homepage-content.schema";
 export * from "./announcement.schema";
 export * from "./permission.schema";
+export * from "./role-permission.schema";

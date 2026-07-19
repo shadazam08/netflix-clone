@@ -31,3 +31,4 @@ export * from "./homepage-section.dto";
 export * from "./homepage-content.dto";
 export * from "./announcement.dto";
 export * from "./permission.dto";
+export * from "./role-permission.dto";
