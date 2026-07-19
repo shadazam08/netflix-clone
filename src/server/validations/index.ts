@@ -20,3 +20,4 @@ export * from "./rating.schema";
 export * from "./review.schema";
 export * from "./my-list.schema";
 export * from "./watch-history.schema";
+export * from "./continue-watching.schema";

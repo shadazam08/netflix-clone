@@ -240,3 +240,16 @@ export const WATCH_HISTORY_MESSAGES = {
   CONTENT_NOT_FOUND: "Content not found.",
   EPISODE_NOT_FOUND: "Episode not found.",
 } as const;
+
+export const CONTINUE_WATCHING_MESSAGES = {
+  LIST_SUCCESS: "Continue watching fetched successfully.",
+  GET_SUCCESS: "Continue watching item fetched successfully.",
+  CREATE_SUCCESS: "Continue watching item created successfully.",
+  UPDATE_SUCCESS: "Continue watching item updated successfully.",
+  DELETE_SUCCESS: "Continue watching item deleted successfully.",
+  NOT_FOUND: "Continue watching item not found.",
+  PROFILE_NOT_FOUND: "Profile not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  EPISODE_NOT_FOUND: "Episode not found.",
+  ALREADY_EXISTS: "Continue watching item already exists.",
+} as const;
