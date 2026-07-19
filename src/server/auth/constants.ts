@@ -153,3 +153,14 @@ export const SEASON_MESSAGES = {
   TV_SHOW_NOT_FOUND: "TV show not found.",
   SEASON_ALREADY_EXISTS: "Season number already exists for this TV show.",
 } as const;
+
+export const EPISODE_MESSAGES = {
+  LIST_SUCCESS: "Episodes fetched successfully.",
+  GET_SUCCESS: "Episode fetched successfully.",
+  CREATE_SUCCESS: "Episode created successfully.",
+  UPDATE_SUCCESS: "Episode updated successfully.",
+  DELETE_SUCCESS: "Episode deleted successfully.",
+  NOT_FOUND: "Episode not found.",
+  SEASON_NOT_FOUND: "Season not found.",
+  EPISODE_ALREADY_EXISTS: "Episode number already exists for this season.",
+} as const;

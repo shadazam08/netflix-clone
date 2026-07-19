@@ -12,3 +12,4 @@ export * from "./studio.schema";
 export * from "./movie.schema";
 export * from "./tv-show.schema";
 export * from "./season.schema";
+export * from "./episode.schema";
