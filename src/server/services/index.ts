@@ -30,3 +30,4 @@ export * from "./audit-log.service";
 export * from "./device.service";
 export * from "./homepage-section.service";
 export * from "./homepage-content.service";
+export * from "./announcement.service";

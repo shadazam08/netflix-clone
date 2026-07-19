@@ -328,3 +328,12 @@ export const HOMEPAGE_CONTENT_MESSAGES = {
   CONTENT_NOT_FOUND: "Content not found.",
   ALREADY_EXISTS: "Homepage content already exists.",
 } as const;
+
+export const ANNOUNCEMENT_MESSAGES = {
+  LIST_SUCCESS: "Announcements retrieved successfully.",
+  GET_SUCCESS: "Announcement retrieved successfully.",
+  CREATE_SUCCESS: "Announcement created successfully.",
+  UPDATE_SUCCESS: "Announcement updated successfully.",
+  DELETE_SUCCESS: "Announcement deleted successfully.",
+  NOT_FOUND: "Announcement not found.",
+} as const;
