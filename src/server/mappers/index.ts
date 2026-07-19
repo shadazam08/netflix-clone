@@ -21,3 +21,4 @@ export * from "./review.mapper";
 export * from "./my-list.mapper";
 export * from "./watch-history.mapper";
 export * from "./continue-watching.mapper";
+export * from "./playback-progress.mapper";
