@@ -195,3 +195,14 @@ export const AUDIO_TRACK_MESSAGES = {
   NOT_FOUND: "Audio track not found.",
   CONTENT_NOT_FOUND: "Content not found.",
 } as const;
+
+export const RATING_MESSAGES = {
+  LIST_SUCCESS: "Ratings fetched successfully.",
+  GET_SUCCESS: "Rating fetched successfully.",
+  CREATE_SUCCESS: "Rating created successfully.",
+  UPDATE_SUCCESS: "Rating updated successfully.",
+  DELETE_SUCCESS: "Rating deleted successfully.",
+  NOT_FOUND: "Rating not found.",
+  PROFILE_NOT_FOUND: "Profile not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+} as const;

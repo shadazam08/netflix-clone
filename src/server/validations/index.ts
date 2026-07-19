@@ -16,3 +16,4 @@ export * from "./episode.schema";
 export * from "./video-source.schema";
 export * from "./subtitle.schema";
 export * from "./audio-track.schema";
+export * from "./rating.schema";
