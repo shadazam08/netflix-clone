@@ -265,3 +265,13 @@ export const PLAYBACK_PROGRESS_MESSAGES = {
   CONTENT_NOT_FOUND: "Content not found.",
   EPISODE_NOT_FOUND: "Episode not found.",
 } as const;
+
+export const NOTIFICATION_MESSAGES = {
+  LIST_SUCCESS: "Notifications retrieved successfully.",
+  GET_SUCCESS: "Notification retrieved successfully.",
+  CREATE_SUCCESS: "Notification created successfully.",
+  UPDATE_SUCCESS: "Notification updated successfully.",
+  DELETE_SUCCESS: "Notification deleted successfully.",
+  NOT_FOUND: "Notification not found.",
+  USER_NOT_FOUND: "User not found.",
+} as const;
