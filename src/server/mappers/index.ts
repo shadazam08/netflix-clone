@@ -14,3 +14,4 @@ export * from "./tv-show.mapper";
 export * from "./season.mapper";
 export * from "./episode.mapper";
 export * from "./video-source.mapper";
+export * from "./subtitle.mapper";

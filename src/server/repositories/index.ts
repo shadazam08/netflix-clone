@@ -16,3 +16,4 @@ export * from "./tv-show.repository";
 export * from "./season.repository";
 export * from "./episode.repository";
 export * from "./video-source.repository";
+export * from "./subtitle.repository";

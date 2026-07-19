@@ -15,3 +15,4 @@ export * from "./tv-show.dto";
 export * from "./season.dto";
 export * from "./episode.dto";
 export * from "./video-source.dto";
+export * from "./subtitle.dto";
