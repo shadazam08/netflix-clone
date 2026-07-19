@@ -19,3 +19,4 @@ export * from "./audio-track.schema";
 export * from "./rating.schema";
 export * from "./review.schema";
 export * from "./my-list.schema";
+export * from "./watch-history.schema";

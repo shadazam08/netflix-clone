@@ -228,3 +228,15 @@ export const MY_LIST_MESSAGES = {
   CONTENT_NOT_FOUND: "Content not found.",
   ALREADY_EXISTS: "Content already exists in My List.",
 } as const;
+
+export const WATCH_HISTORY_MESSAGES = {
+  LIST_SUCCESS: "Watch history fetched successfully.",
+  GET_SUCCESS: "Watch history fetched successfully.",
+  CREATE_SUCCESS: "Watch history created successfully.",
+  UPDATE_SUCCESS: "Watch history updated successfully.",
+  DELETE_SUCCESS: "Watch history deleted successfully.",
+  NOT_FOUND: "Watch history not found.",
+  PROFILE_NOT_FOUND: "Profile not found.",
+  CONTENT_NOT_FOUND: "Content not found.",
+  EPISODE_NOT_FOUND: "Episode not found.",
+} as const;
