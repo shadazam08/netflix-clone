@@ -28,3 +28,4 @@ export * from "./audit-log.mapper";
 export * from "./device.mapper";
 export * from "./homepage-section.mapper";
 export * from "./homepage-content.mapper";
+export * from "./announcement.mapper";
