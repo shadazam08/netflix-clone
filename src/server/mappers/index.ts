@@ -11,3 +11,4 @@ export * from "./person.mapper";
 export * from "./studio.mapper";
 export * from "./movie.mapper";
 export * from "./tv-show.mapper";
+export * from "./season.mapper";

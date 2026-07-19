@@ -12,3 +12,4 @@ export * from "./person.dto";
 export * from "./studio.dto";
 export * from "./movie.dto";
 export * from "./tv-show.dto";
+export * from "./season.dto";
