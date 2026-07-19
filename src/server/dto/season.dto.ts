@@ -2,7 +2,7 @@ export interface SeasonResponseDto {
   id: string;
   tvShowId: string;
   seasonNumber: number;
-  title: string | null;
+  title: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -10,7 +10,7 @@ export interface SeasonResponseDto {
 export interface CreateSeasonDto {
   tvShowId: string;
   seasonNumber: number;
-  title?: string | null;
+  title?: string;
 }
 
 export type UpdateSeasonDto =
