@@ -306,3 +306,13 @@ export const DEVICE_MESSAGES = {
   USER_NOT_FOUND: "User not found.",
   IDENTIFIER_ALREADY_EXISTS: "Device identifier already exists.",
 } as const;
+
+export const HOMEPAGE_SECTION_MESSAGES = {
+  LIST_SUCCESS: "Homepage sections retrieved successfully.",
+  GET_SUCCESS: "Homepage section retrieved successfully.",
+  CREATE_SUCCESS: "Homepage section created successfully.",
+  UPDATE_SUCCESS: "Homepage section updated successfully.",
+  DELETE_SUCCESS: "Homepage section deleted successfully.",
+  NOT_FOUND: "Homepage section not found.",
+  SLUG_ALREADY_EXISTS: "Homepage section slug already exists.",
+} as const;
