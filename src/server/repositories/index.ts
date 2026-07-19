@@ -22,3 +22,4 @@ export * from "./rating.repository";
 export * from "./review.repository";
 export * from "./my-list.repository";
 export * from "./watch-history.repository";
+export * from "./continue-watching.repository";
