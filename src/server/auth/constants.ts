@@ -337,3 +337,13 @@ export const ANNOUNCEMENT_MESSAGES = {
   DELETE_SUCCESS: "Announcement deleted successfully.",
   NOT_FOUND: "Announcement not found.",
 } as const;
+
+export const PERMISSION_MESSAGES = {
+  LIST_SUCCESS: "Permissions retrieved successfully.",
+  GET_SUCCESS: "Permission retrieved successfully.",
+  CREATE_SUCCESS: "Permission created successfully.",
+  UPDATE_SUCCESS: "Permission updated successfully.",
+  DELETE_SUCCESS: "Permission deleted successfully.",
+  NOT_FOUND: "Permission not found.",
+  ALREADY_EXISTS: "Permission already exists.",
+} as const;
