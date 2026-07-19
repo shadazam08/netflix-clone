@@ -19,3 +19,4 @@ export * from "./video-source.repository";
 export * from "./subtitle.repository";
 export * from "./audio-track.repository";
 export * from "./rating.repository";
+export * from "./review.repository";
