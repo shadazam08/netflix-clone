@@ -16,3 +16,4 @@ export * from "./episode.mapper";
 export * from "./video-source.mapper";
 export * from "./subtitle.mapper";
 export * from "./audio-track.mapper";
+export * from "./rating.mapper";
