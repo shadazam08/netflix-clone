@@ -275,3 +275,13 @@ export const NOTIFICATION_MESSAGES = {
   NOT_FOUND: "Notification not found.",
   USER_NOT_FOUND: "User not found.",
 } as const;
+
+export const SYSTEM_SETTING_MESSAGES = {
+  LIST_SUCCESS: "System settings retrieved successfully.",
+  GET_SUCCESS: "System setting retrieved successfully.",
+  CREATE_SUCCESS: "System setting created successfully.",
+  UPDATE_SUCCESS: "System setting updated successfully.",
+  DELETE_SUCCESS: "System setting deleted successfully.",
+  NOT_FOUND: "System setting not found.",
+  KEY_ALREADY_EXISTS: "A system setting with this key already exists.",
+} as const;
