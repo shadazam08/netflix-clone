@@ -3,13 +3,17 @@ export { default as Sidebar } from "./Sidebar";
 export { default as SidebarItem } from "./SidebarItem";
 export { default as SidebarGroup } from "./SidebarGroup";
 export { default as SidebarFooter } from "./SidebarFooter";
+export { default as Topbar } from "./Topbar";
+export { default as UserMenu } from "./UserMenu";
+export { default as NotificationButton } from "./NotificationButton";
+export { default as AdminBreadcrumb } from "./AdminBreadcrumb";
 
 export type { AdminLayoutProps } from "./AdminLayout";
-
 export type { SidebarProps } from "./Sidebar";
-
 export type { SidebarItemProps } from "./SidebarItem";
-
 export type { SidebarGroupProps } from "./SidebarGroup";
-
 export type { SidebarFooterProps } from "./SidebarFooter";
+export type { TopbarProps } from "./Topbar";
+export type { UserMenuProps } from "./UserMenu";
+export type { NotificationButtonProps } from "./NotificationButton";
+export type { AdminBreadcrumbProps } from "./AdminBreadcrumb";
