@@ -1,0 +1,22 @@
+.summary {
+    margin: 0;
+
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    line-height: 1.5;
+
+    white-space: nowrap;
+}
+
+.summary strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .summary {
+        text-align: center;
+        white-space: normal;
+        font-size: 0.8125rem;
+    }
+}
