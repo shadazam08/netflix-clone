@@ -7,6 +7,9 @@ export { default as Topbar } from "./Topbar";
 export { default as UserMenu } from "./UserMenu";
 export { default as NotificationButton } from "./NotificationButton";
 export { default as AdminBreadcrumb } from "./AdminBreadcrumb";
+export { default as DashboardLayout } from "./DashboardLayout";
+export { default as ContentArea } from "./ContentArea";
+export { default as MobileSidebar } from "./MobileSidebar";
 
 export type { AdminLayoutProps } from "./AdminLayout";
 export type { SidebarProps } from "./Sidebar";
@@ -17,3 +20,6 @@ export type { TopbarProps } from "./Topbar";
 export type { UserMenuProps } from "./UserMenu";
 export type { NotificationButtonProps } from "./NotificationButton";
 export type { AdminBreadcrumbProps } from "./AdminBreadcrumb";
+export type { DashboardLayoutProps } from "./DashboardLayout";
+export type { ContentAreaProps } from "./ContentArea";
+export type { MobileSidebarProps } from "./MobileSidebar";
