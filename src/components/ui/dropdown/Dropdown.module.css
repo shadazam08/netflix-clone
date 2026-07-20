@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  color: #f5f5f5;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  width: 100%;
+  min-height: 2.75rem;
+
+  padding: 0.75rem 2.75rem 0.75rem 1rem;
+
+  color: #ffffff;
+  font-size: 0.95rem;
+
+  background-color: #181818;
+
+  border: 1px solid #2f2f2f;
+  border-radius: 0.5rem;
+
+  appearance: none;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.select:hover:not(:disabled) {
+  background-color: #202020;
+  border-color: #404040;
+}
+
+.select:focus {
+  outline: none;
+
+  border-color: #e50914;
+
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
+}
+
+.select:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.error {
+  border-color: #dc2626;
+}
+
+.error:focus {
+  border-color: #dc2626;
+
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+}
+
+.endAdornment {
+  position: absolute;
+  right: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.helperText {
+  color: #a1a1aa;
+
+  font-size: 0.75rem;
+}
+
+.errorText {
+  color: #dc2626;
+
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .select {
+    font-size: 0.875rem;
+  }
+}
