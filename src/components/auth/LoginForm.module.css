@@ -1,0 +1,68 @@
+.container {
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+  max-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  padding: 2.5rem;
+
+  background: rgba(20, 20, 20, 0.95);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  backdrop-filter: blur(12px);
+}
+
+.title {
+  margin: 0;
+
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: -0.5rem 0 0;
+
+  color: #b3b3b3;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.error {
+  padding: 0.85rem 1rem;
+
+  color: #ffffff;
+  font-size: 0.9rem;
+
+  background: rgba(220, 38, 38, 0.15);
+
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .form {
+    max-width: 100%;
+
+    padding: 2rem 1.5rem;
+
+    border-radius: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+}

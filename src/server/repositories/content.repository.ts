@@ -26,6 +26,10 @@ export type ContentWithRelations = Prisma.ContentGetPayload<{
 }>;
 
 export class ContentRepository extends BaseRepository {
+  constructor(db = undefined as ConstructorParameters<typeof BaseRepository>[0]) {
+    super(db);
+  }
+
   async findById(id: string): Promise<ContentWithRelations | null> {
     return this.db.content.findUnique({
       where: { id },

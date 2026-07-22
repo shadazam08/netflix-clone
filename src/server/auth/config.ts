@@ -7,6 +7,7 @@ import { AuthService } from "@/server/services";
 import { loginSchema } from "@/server/validations";
 
 export const authConfig: NextAuthConfig = {
+  secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
 
   session: {
@@ -25,10 +26,7 @@ export const authConfig: NextAuthConfig = {
 
         const authService = new AuthService();
 
-        const user = await authService.validateUser(
-          data.email,
-          data.password
-        );
+        const user = await authService.validateUser(data.email, data.password);
 
         return {
           id: user.id,

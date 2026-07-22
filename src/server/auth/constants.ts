@@ -124,6 +124,7 @@ export const MOVIE_MESSAGES = {
   NOT_FOUND: "Movie not found.",
   CONTENT_NOT_FOUND: "Content not found.",
   CONTENT_ALREADY_ASSIGNED: "Content is already assigned to another movie.",
+  SLUG_EXISTS: "Movie slug already exists.",
 } as const;
 
 export const USER_ROLES = {

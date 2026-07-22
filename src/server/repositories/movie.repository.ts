@@ -1,10 +1,18 @@
-import { Prisma, type Movie } from "@/generated/prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 import { BaseRepository } from "./base.repository";
 
-export type MovieModel = Movie;
+export type MovieWithContent = Prisma.MovieGetPayload<{
+  include: {
+    content: true;
+  };
+}>;
 
 export class MovieRepository extends BaseRepository {
-  async findAll(): Promise<MovieModel[]> {
+  constructor(db = undefined as ConstructorParameters<typeof BaseRepository>[0]) {
+    super(db);
+  }
+
+  async findAll(): Promise<MovieWithContent[]> {
     return this.db.movie.findMany({
       include: {
         content: true,
@@ -15,7 +23,7 @@ export class MovieRepository extends BaseRepository {
     });
   }
 
-  async findById(id: string): Promise<MovieModel | null> {
+  async findById(id: string): Promise<MovieWithContent | null> {
     return this.db.movie.findUnique({
       where: {
         id,
@@ -26,7 +34,7 @@ export class MovieRepository extends BaseRepository {
     });
   }
 
-  async findByContentId(contentId: string): Promise<MovieModel | null> {
+  async findByContentId(contentId: string): Promise<MovieWithContent | null> {
     return this.db.movie.findUnique({
       where: {
         contentId,
@@ -37,7 +45,7 @@ export class MovieRepository extends BaseRepository {
     });
   }
 
-  async create(data: Prisma.MovieCreateInput): Promise<MovieModel> {
+  async create(data: Prisma.MovieCreateInput): Promise<MovieWithContent> {
     return this.db.movie.create({
       data,
       include: {
@@ -46,7 +54,7 @@ export class MovieRepository extends BaseRepository {
     });
   }
 
-  async update(id: string, data: Prisma.MovieUpdateInput): Promise<MovieModel> {
+  async update(id: string, data: Prisma.MovieUpdateInput): Promise<MovieWithContent> {
     return this.db.movie.update({
       where: {
         id,
@@ -58,7 +66,7 @@ export class MovieRepository extends BaseRepository {
     });
   }
 
-  async delete(id: string): Promise<MovieModel> {
+  async delete(id: string) {
     return this.db.movie.delete({
       where: {
         id,
