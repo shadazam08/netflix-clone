@@ -1,20 +1,6 @@
 import type { NextAuthConfig } from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
 
 const authConfig = {
-  providers: [
-    Credentials({
-      credentials: {
-        email: {},
-        password: {},
-      },
-      async authorize() {
-        // Authentication logic next step me likhenge
-        return null;
-      },
-    }),
-  ],
-
   pages: {
     signIn: '/login',
   },
@@ -22,6 +8,8 @@ const authConfig = {
   session: {
     strategy: 'jwt',
   },
+
+  providers: [],
 } satisfies NextAuthConfig;
 
 export default authConfig;
