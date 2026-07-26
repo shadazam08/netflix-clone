@@ -1,5 +1,9 @@
-export { auth as proxy } from "@/auth";
+import { NextResponse } from 'next/server';
+
+export default function proxy() {
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
